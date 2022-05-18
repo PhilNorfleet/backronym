@@ -1,32 +1,38 @@
-import type { NextPage } from 'next'
-import { useForm } from "react-hook-form";
+
+
 import styled from 'styled-components';
-import useSWR from 'swr';
-import axios, { AxiosResponse } from 'axios'
-import { useState } from 'react';
-import { Word } from '../common/types/Word';
 
-const fetcher = (url: string): Promise<AxiosResponse["data"]> => axios.get(url).then(res => res.data)
+import type { NextPage } from 'next'
+import SeedWords from '../modules/seedWords/SeedWords';
 
-const Header = styled.h1`
-  color: blue;
+const HomeContainer = styled.div`
+  height: 100vh;
+`;
+const HomeLayout = styled.div`
+  display: grid;
+  grid-template-areas:
+      "head head head"
+      "nav main main"
+      "nav main main";
+  justify-content: space-between;
 `
-const Home: NextPage = () => {
-  const { register, handleSubmit } = useForm();
-  const [ meansLikeWord, setMeansLikeWord ] = useState([]);
-  const { data, error } = useSWR(`/api/means-like?word=${meansLikeWord}`, fetcher)
-  if (error) return <>error</>
-  if (!data) return <>loading</>
+const Header = styled.h1`
+  grid-area: "head";
+`
+const StyledSeedWords = styled(SeedWords)`
+  grid-area: "nav";
+`
+export const Home: NextPage = () => {
+
   return (
-    <>
-      <Header>Backronym Helper!</Header>
-      <form onSubmit={handleSubmit((inputs) => setMeansLikeWord(inputs.meansLike))}>
-        <input {...register("meansLike")} placeholder="Words with a meaning similar to"/>
-      </form>
-      <div>
-        {data.map((word: Word) => <div>{word.word}</div>)}
-      </div>
-    </>
+    <HomeContainer>
+      <HomeLayout>
+        <Header>Backronym Helper!</Header>
+
+        <StyledSeedWords />
+      </HomeLayout>
+
+    </HomeContainer>
   )
 }
 
