@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 
 import type { NextPage } from 'next'
-import SeedWords from '../modules/seedWords/SeedWords';
+import Filters from '../modules/filters/Filters';
 
 const HomeContainer = styled.div`
   height: 100vh;
@@ -17,10 +17,10 @@ const HomeLayout = styled.div`
   justify-content: space-between;
 `
 const Header = styled.h1`
-  grid-area: "head";
+  grid-area: head;
 `
-const StyledSeedWords = styled(SeedWords)`
-  grid-area: "nav";
+const StyledFilters = styled(Filters)`
+  grid-area: nav;
 `
 export const Home: NextPage = () => {
 
@@ -29,7 +29,7 @@ export const Home: NextPage = () => {
       <HomeLayout>
         <Header>Backronym Helper!</Header>
 
-        <StyledSeedWords />
+        <StyledFilters />
       </HomeLayout>
 
     </HomeContainer>
