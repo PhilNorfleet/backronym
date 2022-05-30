@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import type { NextPage } from 'next'
 import Filters from '../modules/filters/Filters';
+import { WordList } from '../modules/wordList';
 
 const HomeContainer = styled.div`
   height: 100vh;
@@ -23,13 +24,13 @@ const StyledFilters = styled(Filters)`
   grid-area: nav;
 `
 export const Home: NextPage = () => {
-
   return (
     <HomeContainer>
       <HomeLayout>
         <Header>Backronym Helper!</Header>
 
         <StyledFilters />
+        <WordList />
       </HomeLayout>
 
     </HomeContainer>

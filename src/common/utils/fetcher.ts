@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
-
-const fetcher = (url: string): Promise<AxiosResponse["data"]> => axios.get(url).then(res => res.data)
+const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 export default fetcher;

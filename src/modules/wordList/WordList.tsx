@@ -1,12 +1,17 @@
+import styled from "styled-components";
+import useWords from "../../common/hooks/useWords";
 import WordListItem from "./WordListItem"
 
-type WordListProps = {
-  words: string[] 
-}
+type WordListProps = {}
 
-export const WordList: React.FC<WordListProps> = ({ words }) => {
+const List = styled.div`
+  display: flex;
+`;
+
+export const WordList: React.FC<WordListProps> = () => {
+  const { words } = useWords();
   return (
-    <div>{words?.map((word: string) => <WordListItem word={word} />)}</div>
+    <div>{words?.map((word: string) => <WordListItem key={word} word={word} />)}</div>
   )
 }
 export default WordList
