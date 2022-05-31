@@ -92,8 +92,11 @@ const getSpellingQuery = (spellingFilter: SpellingFilter) => {
 
 
 export const getURL = (state: State) => {
-  const url = new URL('https://api.datamuse.com/words');
   const { meaningFilter, spellingFilter, topicsFilter } = state;
+  if (!(meaningFilter.value || topicsFilter.value || spellingFilter.value)) {
+    return '';
+  }
+  const url = new URL('https://api.datamuse.com/words');
   console.log(meaningFilter.value, spellingFilter.value)
   if (meaningFilter.value) {
     url.searchParams.append('ml', meaningFilter.value.split(' ').join(','));

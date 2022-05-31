@@ -1,15 +1,16 @@
 import React, { ChangeEvent, ReactEventHandler, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import useWords from "../../common/hooks/useWords";
 import FilterOptions from "./FilterOptions";
 import useStore, { getOptionsForFilter } from './store';
 import type { Filter, FilterType } from "./types";
 const FilterContainer = styled.form``;
 
-type FilterProps = {
+type FilterComponentProps = {
   filter: Filter;
 }
 
-const Filter = ({ filter }: FilterProps) => {
+const FilterComponent = ({ filter }: FilterComponentProps) => {
   const { type, value } = filter;
   const [inputValue, setInputValue] = useState('');
   const setFilter = useStore(state => state.setFilter);
@@ -34,10 +35,10 @@ const Filter = ({ filter }: FilterProps) => {
             <FilterOptions options={options} />
           </select>
         )}
-        <input type="text" value={inputValue} onChange={handleValueChange} onBlur={handleSubmit}/>
+        <input type="text" value={inputValue} onChange={handleValueChange} />
     </FilterContainer>
 
   )
 }
 
-export default Filter
+export default FilterComponent

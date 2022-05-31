@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useWords from "../../common/hooks/useWords";
+import useFilterStore, { getURL } from "../../modules/filters/store"
 import WordListItem from "./WordListItem"
 
 type WordListProps = {}
@@ -9,7 +10,9 @@ const List = styled.div`
 `;
 
 export const WordList: React.FC<WordListProps> = () => {
-  const { words } = useWords();
+  const url = useFilterStore(getURL);
+  const { words } = useWords(url);
+  console.log(words)
   return (
     <div>{words?.map((word: string) => <WordListItem key={word} word={word} />)}</div>
   )

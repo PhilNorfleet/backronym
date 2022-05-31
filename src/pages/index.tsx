@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import type { NextPage } from 'next'
 import Filters from '../modules/filters/Filters';
 import { WordList } from '../modules/wordList';
+import tw from 'twin.macro'
 
 const HomeContainer = styled.div`
-  height: 100vh;
+  ${tw`mx-auto`}
 `;
+
 const HomeLayout = styled.div`
   display: grid;
   grid-template-areas:
