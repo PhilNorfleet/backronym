@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import type { NextPage } from 'next'
 import Filters from '../modules/filters/Filters';
 import { WordList } from '../modules/wordList';
-import tw from 'twin.macro'
+import Builder from '../modules/builder/Builder';
 
 const HomeContainer = styled.div`
-  ${tw`mx-auto`}
+  height: 100vh;
 `;
 
 const HomeLayout = styled.div`
@@ -17,22 +17,29 @@ const HomeLayout = styled.div`
       "head head head"
       "nav main main"
       "nav main main";
-  justify-content: space-between;
 `
-const Header = styled.h1`
+const Head = styled.div`
   grid-area: head;
 `
-const StyledFilters = styled(Filters)`
+const Nav = styled.div`
   grid-area: nav;
 `
+const Main = styled.div`
+  grid-area: main;
+`
+const HeaderText = styled.h1``;
 export const Home: NextPage = () => {
   return (
     <HomeContainer>
       <HomeLayout>
-        <Header>Backronym Helper!</Header>
-
-        <StyledFilters />
-        <WordList />
+        <Head><HeaderText>Backronyms</HeaderText></Head>
+        <Nav>
+          <Filters />
+          <WordList />
+        </Nav>
+        <Main>
+          <Builder />
+        </Main>
       </HomeLayout>
 
     </HomeContainer>

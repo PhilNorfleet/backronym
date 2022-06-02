@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FilterOption } from "./store";
+import type { FilterOption } from "./types";
 
 const Option = styled.option``;
 const FilterOptions = ({ options }: { options: FilterOption[]}) => {

@@ -4,7 +4,7 @@ type WordListItemProps = {
   word: string
 }
 
-const WordContainer = styled.div``;
+const WordContainer = styled.li``;
 
 export const WordListItem: React.FC<WordListItemProps> = ({ word }) => {
   return (

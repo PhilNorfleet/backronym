@@ -12,9 +12,8 @@ const List = styled.div`
 export const WordList: React.FC<WordListProps> = () => {
   const url = useFilterStore(getURL);
   const { words } = useWords(url);
-  console.log(words)
   return (
-    <div>{words?.map((word: string) => <WordListItem key={word} word={word} />)}</div>
+    <ul>{words?.map((word: string) => <WordListItem key={word} word={word} />)}</ul>
   )
 }
 export default WordList

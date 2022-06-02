@@ -77,17 +77,17 @@ export const getOptionsForFilter = (filter: Filter) => {
 }
 
 const getSpellingQuery = (spellingFilter: SpellingFilter) => {
-  const { type, value } = spellingFilter;
-  let query = '';
+  const { type, value } = spellingFilter
   switch (type) {
     case FilterType.CONTAINS:
-      query = `*${value}*`;
+      return `*${value}*`
     case FilterType.STARTS:
-      query = `${value}*`;
+      return `${value}*`
     case FilterType.ENDS:
-      query = `*${value}`;
+      return `*${value}`
+    default:
+      return ''
   }
-  return query;
 }
 
 
@@ -97,7 +97,6 @@ export const getURL = (state: State) => {
     return '';
   }
   const url = new URL('https://api.datamuse.com/words');
-  console.log(meaningFilter.value, spellingFilter.value)
   if (meaningFilter.value) {
     url.searchParams.append('ml', meaningFilter.value.split(' ').join(','));
   }
@@ -107,5 +106,6 @@ export const getURL = (state: State) => {
   if (spellingFilter.value) {
     url.searchParams.append('sp', getSpellingQuery(spellingFilter));
   }
+  console.log(meaningFilter, topicsFilter, spellingFilter)
   return url.toString();
 }

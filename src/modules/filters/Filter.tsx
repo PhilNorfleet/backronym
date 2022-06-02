@@ -17,7 +17,7 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
   const options = getOptionsForFilter(filter);
   const handleTypeChange = useCallback(
     (type: FilterType) => setFilter({ type, value }),
-    []
+    [value]
   )
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement | HTMLInputElement>) => {
