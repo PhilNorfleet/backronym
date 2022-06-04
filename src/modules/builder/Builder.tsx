@@ -12,6 +12,7 @@ const Builder = () => {
         <Letter
           key={`${letter}-${index}`}
           character={letter.character}
+          word={letter.word}
           index={index}
           onFocus={() => setFocus(index)}
           autoFocus={focus === index}
