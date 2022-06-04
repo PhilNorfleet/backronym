@@ -1,39 +1,74 @@
-import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import create from "zustand";
+import { devtools } from "zustand/middleware";
 
 /*
-* Types
-*/
-export type Letter =
-  | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm'
-  | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'
-;
+ * Types
+ */
+export type Character =
+  | "a"
+  | "b"
+  | "c"
+  | "d"
+  | "e"
+  | "f"
+  | "g"
+  | "h"
+  | "i"
+  | "j"
+  | "k"
+  | "l"
+  | "m"
+  | "n"
+  | "o"
+  | "p"
+  | "q"
+  | "r"
+  | "s"
+  | "t"
+  | "u"
+  | "v"
+  | "w"
+  | "x"
+  | "y"
+  | "z"
+  | "";
 
-type BuilderLetter = {
-  letter: Letter;
+export type BuilderLetter = {
+  character: Character;
   word?: string;
-}
+};
 
 interface State {
   letters: BuilderLetter[];
-  setCharacter: (character: Letter, index: number) => void;
+  setCharacter: (character: Character, index: number) => void;
+  setLetters: (word: string) => void;
 }
 
 /*
-* Store
-*/
-const useStore = create<State>()(devtools(set => ({
-  letters: [{ letter:'p' }],
-  setCharacter: (character, index) => set(state =>  {
-    const letters = [ ...state.letters ];
-    letters[index] = { letter: character };
-    console.log('setCharacter', character, index)
-    return { letters }
-  })
-})));
+ * Store
+ */
+const useStore = create<State>()(
+  devtools((set) => ({
+    letters: [{ character: "p" }],
+    setCharacter: (character, index) =>
+      set((state) => {
+        const letters = [...state.letters];
+        letters[index] = { character };
+        return { letters };
+      }),
+    setLetters: (word) =>
+      set((state) => {
+        if (!word) return state;
+        const letters = word.split("").map((character) => ({
+          character: character as Character,
+        }));
+        return { letters };
+      }),
+  }))
+);
 
 export default useStore;
 
 /*
-* Selectors
-*/
+ * Selectors
+ */
